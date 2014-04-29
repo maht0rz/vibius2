@@ -1,5 +1,6 @@
 {
     "name": "vibius/vibius",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
         	"my\\nmp\\": ".sr",
