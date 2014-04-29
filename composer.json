@@ -1,7 +1,7 @@
 {
     "name": "vibius/vibius",
-    "minimum-stability": "stable",
-    "autoload": {
+     "version": "1.0.0-stable", 
+     "autoload": {
         "psr-4": {
         	"my\\nmp\\": ".sr",
         	"Vibius\\Libraries\\":"./Libraries"
