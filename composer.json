@@ -1,11 +1,16 @@
 {
     "name": "vibius/vibius",
-     "version": "1.0.0-stable", 
+    "type": "library",
+    "description": "Vibius 2 Framework",
+    "keywords": ["framwork", "sdk"]
      "autoload": {
         "psr-4": {
         	"my\\nmp\\": ".sr",
         	"Vibius\\Libraries\\":"./Libraries"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "extra": {
+        "dev-master": "1.0-stable"
+    }
 }
