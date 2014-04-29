@@ -2,7 +2,7 @@
     "name": "vibius/vibius",
     "type": "library",
     "description": "Vibius 2 Framework",
-    "keywords": ["framwork", "sdk"]
+    "keywords": ["framwork", "sdk"],
      "autoload": {
         "psr-4": {
         	"my\\nmp\\": ".sr",
