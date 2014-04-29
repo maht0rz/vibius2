@@ -1,5 +1,5 @@
 {
-    "name": "Vibius/Vibius",
+    "name": "vibius/vibius",
     "autoload": {
         "psr-4": {
         	"my\\nmp\\": ".sr",
