@@ -7,8 +7,5 @@
         	"Vibius\\Libraries\\":"./Libraries"
         }
     },
-    "require": {
-		"vibius/vibius": "1.0.*"
-	},
     "minimum-stability": "stable"
 }
