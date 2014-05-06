@@ -1,0 +1,21 @@
+{
+    "name": "vibius/vibius",
+    "type": "library",
+    "description": "Vibius 2 Framework",
+    "keywords": ["framwork", "sdk"],
+     "autoload": {
+        "psr-4": {
+            "vibius\\core\\":"./core",
+            "vibius\\interfaces\\":"./core/interfaces",
+            "vibius\\extensions\\":"./extensions",
+            "vibius\\app\\hooks\\":"./app/hooks",
+            "vibius\\app\\settings\\":"./app/settings",
+            "vibius\\app\\settings\\handlers\\":"./app/settings/handlers",
+            "vibius\\app\\models\\":"./app/settings/handlers"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "dev-master": "1.0-dev"
+    }
+}
