@@ -112,15 +112,17 @@ class Cache
           if($this->exists($name,true)){
             $this->delete($name);
           }
-         $f = fopen($file,'w+');
+         
          $content = $this->checkFileSize(ob_get_contents());
          if(($content / 1024) < settings\Config::$cacheFileLimit){
             if(($size+$content / 1024) > settings\config::$cacheFolderLimit){
               return;
             }
+          $f = fopen($file,'w+');
           fwrite($f, ob_get_contents());
+          fclose($f);
          }
-         fclose($f);
+         
 
         }
     }
