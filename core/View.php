@@ -55,7 +55,7 @@ class View{
           $re3='(\\$)'; # Any Single Character 3
           $re4='((?:[a-z][a-z]+))'; # Word 1
           $re5='(_)';   # Any Single Character 4
-          $re6='((?:[a-z][a-z]+))'; # Word 2
+          $re6='((?:[a-z][a-z\\/]+))'; # Word 2
           $re7='(\\})'; # Any Single Character 5
           $re8='(\\})'; # Any Single Character 6
 
