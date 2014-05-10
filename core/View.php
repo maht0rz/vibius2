@@ -41,7 +41,7 @@ class View{
                   if ($c=preg_match_all ("/".$re1.$re2.$re3.$re4.$re5.$re6."/is", $view, $matches))
                   {
                     foreach($matches[4] as $match){
-                        $view = preg_replace("/".$re1.$re2.$re3.'('.$match.')'.$re5.$re6."/is"," <?php echo $".$match.";?> ",$view);
+                        $view = preg_replace("/".$re1.$re2.$re3.'('.$match.')'.$re5.$re6."/is"," <?php echo $".$match.";?>",$view);
                     }
                   }
              
