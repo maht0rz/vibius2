@@ -47,11 +47,19 @@ class Router{
 
     public function dispatch(){
         //get basepath of app
-        $this->base = explode('public/index.php',$_SERVER['PHP_SELF'])[0];
-
-        //cut basepath from request uri
-        $this->url = str_replace($this->base,'', $_SERVER['REQUEST_URI']);
-        $this->url = explode('?',$this->url)[0];
+		$this->base = explode('public/index.php',$_SERVER['PHP_SELF']);
+		$this->base = $this->base[0];
+		//cut basepath from request uri
+		$this->url = $_SERVER['REQUEST_URI'];
+		if($this->base != '/'){
+			 $this->url = str_replace($this->base,'', $_SERVER['REQUEST_URI']);
+			 
+		}else{
+			$this->url= substr($this->url,1);
+		}
+	       
+		$this->url = explode('?',$this->url);
+		$this->url = $this->url[0];
         //get request type
         $this->requestType = $_SERVER['REQUEST_METHOD'];
 
