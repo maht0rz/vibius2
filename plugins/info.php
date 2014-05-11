@@ -1,6 +1,6 @@
 <?php
 
-namespace vibius\extensions;
+namespace vibius\plugins;
 
 class info{
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace vibius\extensions;
+namespace vibius\plugins;
 /**
  * Validation-Handler is part of VibiusPHP.
  * Author: Aaqib Anees

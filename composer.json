@@ -7,7 +7,7 @@
         "psr-4": {
             "vibius\\core\\":"./core",
             "vibius\\interfaces\\":"./core/interfaces",
-            "vibius\\extensions\\":"./extensions",
+            "vibius\\plugins\\":"./plugins",
             "vibius\\app\\hooks\\":"./app/hooks",
             "vibius\\app\\settings\\":"./app/settings",
             "vibius\\app\\settings\\handlers\\":"./app/settings/handlers",
