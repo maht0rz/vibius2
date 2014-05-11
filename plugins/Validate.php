@@ -61,6 +61,23 @@ class Validate {
     * @param $source for Method type : POST/GET.
     * @param $items for validations Array().
     */
+    
+        public function exists($inputs){
+                foreach ($inputs as $input) {
+                $a = explode(':',$input);
+                if($a[0] == 'POST' || $a[0] == 'post'){
+                    if(empty($_POST[$a[1]])){
+                        return false;
+                    }
+                }else{
+                    if(empty($_GET[$a[1]])){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    
         public function get($source , $items = array()) {
  
                 foreach( $items as $input => $rules ) {
