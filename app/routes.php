@@ -5,6 +5,6 @@ $route = new core\Router();
 $view = new core\View();
 
 
-$route->get('',function() use($view){
+$route->get('/',function() use($view){
     $view->load('welcome')->display();
 });
