@@ -245,7 +245,7 @@ class Router{
     public function check($found){
 
         if(!$found){
-            throw new \Exception('404');
+            throw new \Exception('Route not found',404);
         }
 
             if(is_callable($found[1])){

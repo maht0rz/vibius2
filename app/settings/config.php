@@ -3,7 +3,8 @@
 namespace vibius\app\settings;
 
 class config{
-
+    
+    
     //Cache directory size limit in Kb
     public static $cacheFolderLimit = '0.20';
 

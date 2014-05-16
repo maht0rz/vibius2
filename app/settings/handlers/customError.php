@@ -1,8 +1,12 @@
 <?php
 
 class customError{
-    public function initmethod($e){
-        
-        var_dump($e);
+    public function routeNotFound(){
+     echo "page not found";
+       
+    }  
+    
+    public function handleError(){
+        echo 'something went wrong';
     }
 }

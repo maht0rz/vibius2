@@ -12,5 +12,11 @@ class Db{
         );
         return $this->pdo;
     }
+    
+    public function model($name){
+        require_once dirname(__DIR__).'/app/models/'.$name.'.php';
+        
+        return new $name;
+    }
 
 }

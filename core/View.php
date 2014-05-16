@@ -4,9 +4,9 @@ namespace vibius\core;
 
 class View{
 
-    public $template = true;
-    public static $rules = array();
-    public static $GlobalVars = array();
+    private $template = true;
+    private static $rules = array();
+    private static $GlobalVars = array();
 
     public function load($name){
         $this->file = dirname(__FILE__).'/../app/views/'.$name.'.tpl.php';
@@ -29,7 +29,7 @@ class View{
         return $this;
     }
 
-    public function parse($view){
+    private function parse($view){
           $re1='(\\{)'; # Any Single Character 1
           $re2='(\\{)'; # Any Single Character 2
           $re3='(\\$)'; # Any Single Character 3
@@ -49,7 +49,7 @@ class View{
          return $view;
     }
 
-    public function parseRule($view){
+    private function parseRule($view){
           $re1='(\\{)'; # Any Single Character 1
           $re2='(\\{)'; # Any Single Character 2
           $re3='(\\$)'; # Any Single Character 3
