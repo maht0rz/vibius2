@@ -72,7 +72,7 @@
             .mark{
             color:#fa4f4f;
                 font-weight:bold;
-            background:#0b0b0b;
+           
             }
                         ::-webkit-scrollbar-corner {
                         background: rgba(0, 0, 0, 0.1);
