@@ -6,6 +6,11 @@ use vibius\app\hooks as hooks;
 //router class 
 class Router{
 
+    const TYPE_ANY = 'any';
+    const TYPE_GET = 'get';
+    const TYPE_POST = 'post';
+    const TYPE_AJAX = 'xmlhttprequest';
+
     private static $routes = array();
     private static $groups = array();
     private static $params = array();
@@ -14,26 +19,22 @@ class Router{
 
     //add route with no rules
     public function any($route,$action){
-        $type = 'any';
-        $this->add($type,$route,$action);
+        $this->add(self::TYPE_ANY,$route,$action);
     }
 
     //add route which accepts get request only
     public function get($route,$action){
-        $type = 'get';
-        $this->add($type,$route,$action);
+        $this->add(self::TYPE_GET,$route,$action);
     }
 
     //add route which accepts post request only
     public function post($route,$action){
-        $type = 'post';
-        $this->add($type,$route,$action);
+        $this->add(self::TYPE_POST,$route,$action);
     }
 
     //add route which accepts ajax request only
     public function ajax($route,$action){
-        $type = 'xmlhttprequest';
-        $this->add($type,$route,$action);
+        $this->add(self::TYPE_AJAX,$route,$action);
     }
 
     //add route to arra
