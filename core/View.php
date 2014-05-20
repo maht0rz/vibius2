@@ -22,6 +22,19 @@ class View{
         return $this;
     }
     
+    public function exists($name){
+        $this->file = dirname(__FILE__).'/../app/views/'.$name.'.tpl.php';
+        if(!file_exists($this->file)){
+            $this->template = false;
+            $this->file = dirname(__FILE__).'/../app/views/'.$name.'.php';
+            if(!file_exists($this->file)){
+               return false;
+            }
+        }
+        return true;
+    }
+    
+    
     public function vars($args = array()){
         foreach ($args as $key => $value) {
             $this->args[$key] = $value;
