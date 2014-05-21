@@ -6,6 +6,14 @@ use vibius\app\hooks as hooks;
 //router class 
 class Router{
 
+    const TYPE_ANY = 'any';
+    const TYPE_GET = 'get';
+    const TYPE_POST = 'post';
+    const TYPE_AJAX = 'xmlhttprequest';
+
+    const DEFAULT_INDEX_PATH = 'public/index.php';
+    const DEFAULT_CONTROLLERS_PATH = '/app/controllers/';
+
     private static $routes = array();
     private static $groups = array();
     private static $params = array();
@@ -14,26 +22,22 @@ class Router{
 
     //add route with no rules
     public function any($route,$action){
-        $type = 'any';
-        $this->add($type,$route,$action);
+        $this->add(self::TYPE_ANY,$route,$action);
     }
 
     //add route which accepts get request only
     public function get($route,$action){
-        $type = 'get';
-        $this->add($type,$route,$action);
+        $this->add(self::TYPE_GET,$route,$action);
     }
 
     //add route which accepts post request only
     public function post($route,$action){
-        $type = 'post';
-        $this->add($type,$route,$action);
+        $this->add(self::TYPE_POST,$route,$action);
     }
 
     //add route which accepts ajax request only
     public function ajax($route,$action){
-        $type = 'xmlhttprequest';
-        $this->add($type,$route,$action);
+        $this->add(self::TYPE_AJAX,$route,$action);
     }
 
     //add route to arra
@@ -47,7 +51,7 @@ class Router{
 
     public function dispatch(){
         //get basepath of app
-		$this->base = explode('public/index.php',$_SERVER['PHP_SELF']);
+		$this->base = explode(self::DEFAULT_INDEX_PATH,$_SERVER['PHP_SELF']);
 		$this->base = $this->base[0];
 		//cut basepath from request uri
 		$this->url = $_SERVER['REQUEST_URI'];
@@ -69,7 +73,7 @@ class Router{
                 
                 $type = $options[0];
                 //check if request type matches currently looped url
-                if(strtoupper($type) == $this->requestType || $type == 'any' || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $type == strtolower($_SERVER['HTTP_X_REQUESTED_WITH']))){
+                if(strtoupper($type) == $this->requestType || $type == self::TYPE_ANY || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $type == strtolower($_SERVER['HTTP_X_REQUESTED_WITH']))){
                     if($this->url == '' && $key == '/'){
                         //match found
                         
@@ -185,7 +189,7 @@ class Router{
                     $controller = $exp[0];
                     $method = $exp[1];
 
-                    $file = dirname(__DIR__).'/app/controllers/'.$controller.'.php';
+                    $file = dirname(__DIR__).self::DEFAULT_CONTROLLERS_PATH.$controller.'.php';
 
                     if(!file_exists($file)){
                         throw new \Exception('Controller file: <b>'.$file.'</b> does not exists');
@@ -221,7 +225,7 @@ class Router{
                     $controller = $exp[0];
                     $method = $exp[1];
 
-                    $file = dirname(__DIR__).'/app/controllers/'.$controller.'.php';
+                    $file = dirname(__DIR__).self::DEFAULT_CONTROLLERS_PATH.$controller.'.php';
 
                     if(!file_exists($file)){
                         throw new \Exception('Controller file: <b>'.$file.'</b> does not exists');
@@ -265,7 +269,7 @@ class Router{
         $controller = $exp[0];
         $method = $exp[1];
 
-        $file = dirname(__DIR__).'/app/controllers/'.$controller.'.php';
+        $file = dirname(__DIR__).self::DEFAULT_CONTROLLERS_PATH.$controller.'.php';
 
             if(!file_exists($file)){
                 throw new \Exception('Controller file: <b>'.$file.'</b> does not exists');
