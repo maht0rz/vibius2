@@ -14,7 +14,7 @@ class AssetsBootstraper{
         $this->path = dirname(__DIR__).$path;
     }
     
-    public function addColletion($name,$assets){
+    public function addCollection($name,$assets){
         self::$assets[$name] = array();
         foreach($assets as $asset){
             $a = explode(':',$asset);
