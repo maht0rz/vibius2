@@ -16,12 +16,22 @@ class Lang{
         $this->file = $file;
     }
     
+    public function getFast($key, $file = ''){
+        
+    }
+    
     public function get($key,$file = ''){
        if(isset($this->file)){
            $file = $this->file;
        }
        if(file_exists($this->path.$file.'.php')){
-           $f = require_once $this->path.$file.'.php';
+           if(!isset($this->{'f_'.$file})){
+               
+                $f = require $this->path.$file.'.php';
+                $this->{'f_'.$file} = $f;
+           }else{
+               $f = $this->{'f_'.$file};
+           }
        
             if(isset($f[$key])){
                 return $f[$key];
@@ -36,7 +46,13 @@ class Lang{
            $file = $this->file;
        }
        if(file_exists($this->path.$file.'.php')){
-           $f = require $this->path.$file.'.php';
+           if(!isset($this->{'f_'.$file})){
+               
+                $f = require $this->path.$file.'.php';
+                $this->{'f_'.$file} = $f;
+           }else{
+               $f = $this->{'f_'.$file};
+           }
            return $f;
        }
        
@@ -48,7 +64,13 @@ class Lang{
            $file = $this->file;
        }
        if(file_exists($this->path.$file.'.php')){
-           $f = require $this->path.$file.'.php'; 
+           if(!isset($this->{'f_'.$file})){
+               
+                $f = require $this->path.$file.'.php';
+                $this->{'f_'.$file} = $f;
+           }else{
+               $f = $this->{'f_'.$file};
+           }
            if(!is_array($f)){
                $f = array();
            }
@@ -72,7 +94,13 @@ class Lang{
            $file = $this->file;
        }
        if(file_exists($this->path.$file.'.php')){
-           $f = require $this->path.$file.'.php';
+           if(!isset($this->{'f_'.$file})){
+               
+                $f = require $this->path.$file.'.php';
+                $this->{'f_'.$file} = $f;
+           }else{
+               $f = $this->{'f_'.$file};
+           }
            
            foreach ($keys as $key){
                if(isset($f[$key])){
@@ -92,7 +120,13 @@ class Lang{
        }
        if(file_exists($this->path.$file.'.php')){
            if(!empty($selector)){
-               $f = require $this->path.$file.'.php';
+               if(!isset($this->{'f_'.$file})){
+               
+                    $f = require $this->path.$file.'.php';
+                    $this->{'f_'.$file} = $f;
+               }else{
+                   $f = $this->{'f_'.$file};
+               }
                if(empty($f[$selector])){
                    return true;
                }
