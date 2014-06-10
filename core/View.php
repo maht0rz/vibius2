@@ -140,7 +140,7 @@ class View{
        
         ob_start();
         eval('?> '.$view);
-        $output = ob_get_flush();
+        $output = ob_get_contents();
         ob_clean();
         return $output;
     }
