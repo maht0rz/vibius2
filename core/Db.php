@@ -4,6 +4,8 @@ namespace vibius\core;
 use vibius\app\settings as settings;
 class Db{
 
+    private static $db = null;
+
     public function connect(){
         if(!isset(self::$db)){
             self::$db = new \PDO(
