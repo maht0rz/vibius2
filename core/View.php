@@ -120,6 +120,26 @@ class View{
     public function getRule($key){
         return self::$rules[$key];
     }
+    
+    public function getView(){
+           foreach (self::$GlobalVars as $key => $value) {
+               ${$key} = $value;
+            }
+            
+            foreach ($this->args as $key => $value) {
+                
+                ${$key} = $value;
+            }
+            $view = file_get_contents($this->file);
+                if($this->template){
+                    # echo "is tempalte!";
+                    $view = $this->parseRule($view);
+                    $view = $this->parse($view);
+                }
+        
+           
+            return $view;
+        }
 
     public function display(){
         
