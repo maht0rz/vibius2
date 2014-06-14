@@ -43,6 +43,7 @@ class View{
     }
 
     private function parse($view){
+          $re1='(\\{)'; # Any Single Character 2
           $re2='(\\{)'; # Any Single Character 2
           $re3='(\\$)'; # Any Single Character 3
           $re4='((?:[a-z][a-z0-9_]*))'; # Word 1
