@@ -35,7 +35,7 @@ class AssetsBootstraper{
             if($asset[1] == 'css'){
                 $file = $this->path.$asset[0].'.css';
                 if(file_exists($file)){
-                    require $file;
+                    require_once $file;
                 }
             }
         }
@@ -50,7 +50,7 @@ class AssetsBootstraper{
             if($asset[1] == 'js'){
                 $file = $this->path.$asset[0].'.js';
                 if(file_exists($file)){
-                    require $file;
+                    require_once $file;
                 }
             }
         }
