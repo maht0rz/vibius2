@@ -43,10 +43,9 @@ class View{
     }
 
     private function parse($view){
-          $re1='(\\{)'; # Any Single Character 1
           $re2='(\\{)'; # Any Single Character 2
           $re3='(\\$)'; # Any Single Character 3
-          $re4='((?:[a-z][A-Z]+))'; # Word 1
+          $re4='((?:[a-z][a-z0-9_]*))'; # Word 1
           $re5='(\\})'; # Any Single Character 5
           $re6='(\\})'; # Any Single Character 6     
 
@@ -57,7 +56,28 @@ class View{
                         $view = preg_replace("/".$re1.$re2.$re3.'('.$match.')'.$re5.$re6."/is","<?php echo $".$match.";?>",$view);
                     }
                   }
-             
+
+          $req='(\\{)'; # Any Single Character 1
+          $ree='(\\{)'; # Any Single Character 2      
+          $re1='.*?'; # Non-greedy match on filler
+          $dlr='(\\$)'; # Any Single Character 3
+          $re2='(\\[)'; # Any Single Character 1
+          $re3='(\')';  # Any Single Character 2
+          $re4='((?:[a-z][a-z0-9_]*))'; # Variable Name 1
+          $re5='(\')';  # Any Single Character 3
+          $re6='(\\])'; # Any Single Character 4
+          $re7='(\\})'; # Any Single Character 5
+          $re8='(\\})'; # Any Single Character 6    
+
+
+                  if ($c=preg_match_all ("/".$req.$ree.$re1.$dlr.$re4.$re2.$re3.$re4.$re5.$re6.$re7.$re8."/is", $view, $matches))
+                  {
+                    foreach($matches[4] as $match){
+                        foreach($matches[7] as $index){
+                          $view = preg_replace("/".$req.$ree.$re1.$dlr.$re4.$re2.$re3.$re4.$re5.$re6.$re7.$re8."/is","<?php echo $".$match."['".$index."'];?>",$view);
+                      }
+                    }
+                  }
         
          return $view;
     }
