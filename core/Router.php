@@ -114,7 +114,7 @@ class Router{
                     }
 
                     $reg = substr_replace($reg ,"",-4);
-                    if ($c=preg_match_all("/".$reg."$/is", $this->url, $matches)){
+                    if ($c=preg_match_all("/^".$reg."$/is", $this->url, $matches)){
                           if(count(explode('/',$this->url)) <= count($segments)){
                               $regex = '((?:[a-z0-9-.@]*))';
                               $url = explode('/',$this->url);
