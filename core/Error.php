@@ -29,7 +29,7 @@ class Error{
             switch ($e->getCode()) {
                 case 404:
                     if(!empty($notfound)){
-                        require dirname(__DIR__).$notfound[0];
+                        require_once dirname(__DIR__).$notfound[0];
                         $class = new $notfound[1];
                         $class->$notfound[2]();
                         return;
@@ -45,7 +45,7 @@ class Error{
         }
         
         if(!empty($error)){
-                require dirname(__DIR__).$error[0];
+                require_once dirname(__DIR__).$error[0];
                 $class = new $error[1];
                 $class->$error[2]();
                 return;
@@ -67,7 +67,7 @@ class Error{
             $app = new App();
             $r = $app->get('Error');
             if(!empty($r)){
-                require dirname(__DIR__).$r[0];
+                require_once dirname(__DIR__).$r[0];
                 $router = new $r[1]();
                 $router->$r[2]($r[3]);
             }else{
