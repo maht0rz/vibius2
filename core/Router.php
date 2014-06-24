@@ -19,6 +19,7 @@ class Router{
     private static $params = array();
     private static $regex = array();
     private static $args = array();
+    private static $spevars = array();
 
     //add route with no rules
     public function any($route,$action){
@@ -41,11 +42,11 @@ class Router{
     }
 
     //add route to arra
-    private function add($type,$route,$action){
+    public function add($type,$route,$action){
         self::$routes[$route] = array($type,$action);
     }
     
-    private function group($route,$action){
+    public function group($route,$action){
         self::$groups[$route] = array($action);
     }
 
@@ -66,10 +67,10 @@ class Router{
 		$this->url = $this->url[0];
         //get request type
         $this->requestType = $_SERVER['REQUEST_METHOD'];
-
+            self::$routes = array_reverse(self::$routes);
             //loop through all routes to find match
             foreach (self::$routes as $key => $options) {
-                
+                self::$spevars == array();
                 
                 $type = $options[0];
                 //check if request type matches currently looped url
@@ -95,11 +96,29 @@ class Router{
                           $re2='((?:[$][a-z][a-z]+))';
                           $re3='(\\})';    # Any Single Character 3
                           
-                           $rVars = preg_replace ("/".$re1.$re2.$re3."$/is", '((?:[a-z0-9-.@]*))', $s);
-                             
-
+                          $rVars = preg_replace ("/^".$re1.$re2.$re3."$/is", '((?:[a-z0-9-.@]*))', $s);
+                          
                           $re1='((?:[a-z][a-z]+))';
-                          $replaced = preg_replace ("/".$re1."$/is", '('.$s.')', $rVars);
+                          $replaced = preg_replace ("/^".$re1."$/is", '('.$s.')', $rVars);
+                            
+                          
+                            $re1='(\\{)';	# Any Single Character 1
+                            $re2='(%)';	# Any Single Character 2
+                            $re3='(.*)';	# Round Braces 1
+                            $re4='(%)';	# Any Single Character 3
+                            $re5='(\\})';	# Any Single Character 4
+                            if($c=preg_match_all("/^".$re1.$re2.$re3.$re4.$re5."$/is", $replaced, $matches)){
+                                $replaced = preg_replace("/^".$re1.$re2.preg_quote($matches[3][0]).$re4.$re5."$/is", $matches[3][0], $replaced);
+                                
+                                foreach($segments as $num => $val){
+                                    if($val == $s){
+                                        array_push(self::$spevars, $num);
+                                    }
+                                }
+                                
+                            }
+                           
+                            
                          
                            array_push(self::$regex,$replaced);
 
@@ -122,9 +141,10 @@ class Router{
                               $count=-1;
                               foreach (self::$regex as $key => $value) {
                                   $count++;
-                                  if($value == $regex){
+                                  if($value == $regex || in_array($count, self::$spevars)){
                                       array_push(self::$args,$url[$count]);
                                   }
+                                  
                               }
 
                               //match found
@@ -153,11 +173,22 @@ class Router{
                           $re3='(\\})';    # Any Single Character 3
                           
                            $rVars = preg_replace ("/".$re1.$re2.$re3."$/is", '((?:[a-z0-9-.@]*))', $s);
-                             
+                          
+                           
 
                           $re1='((?:[a-z][a-z]+))';
                           $replaced = preg_replace ("/".$re1."$/is", '('.$s.')', $rVars);
                          
+                            $re1='(\\{)';	# Any Single Character 1
+                            $re2='(%)';	# Any Single Character 2
+                            $re3='(.*)';	# Round Braces 1
+                            $re4='(%)';	# Any Single Character 3
+                            $re5='(\\})';	# Any Single Character 4
+                           
+                            if($c=preg_match_all("/^".$re1.$re2.$re3.$re4.$re5."$/is", $replaced, $matches)){
+                                $replaced = preg_replace("/^".$re1.$re2.preg_quote($matches[3][0]).$re4.$re5."$/is", $matches[3][0], $replaced);
+                            }
+                            
                            array_push(self::$regex,$replaced);
 
                 
@@ -173,7 +204,7 @@ class Router{
             #$reg = substr_replace($reg ,"",-4);
             $regx = $reg.'((?:[a-z0-9-.@\\/]*))';
             $found = $options;
-            if ($c=preg_match_all("/".$regx."$/is", $this->url, $matches)){
+            if ($c=preg_match_all("/^".$regx."$/is", $this->url, $matches)){
                 
                         if(is_callable($found[0])){
                         $hook = new hooks\preRouteExecution();
