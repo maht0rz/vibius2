@@ -20,6 +20,7 @@ class View{
         }
         
         $this->args = array();
+        $this->fileContents = file_get_contents($this->file);
         return $this;
     }
     
@@ -152,7 +153,7 @@ class View{
             
             ${$key} = $value;
         }
-        $view = file_get_contents($this->file);
+        $view = $this->fileContents;
             if($this->template){
                 # echo "is tempalte!";
                 $view = $this->parseRule($view);
@@ -177,7 +178,7 @@ class View{
             
             ${$key} = $value;
         }
-        $view = file_get_contents($this->file);
+        $view = $this->fileContents;
             if($this->template){
                 # echo "is tempalte!";
                 $view = $this->parseRule($view);
