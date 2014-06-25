@@ -55,6 +55,7 @@
             font-size:14px;
             }
             .code{
+                overflow:scroll;
                 font-size:13px;
                 padding:10px;
                 min-width:900px;
