@@ -10,6 +10,7 @@ class View{
 
     public function load($name){
         $this->file = dirname(__FILE__).'/../app/views/'.$name.'.tpl.php';
+        $GLOBALS['debugger_template'] = $this->file;
         if(!file_exists($this->file)){
             $this->template = false;
             $this->file = dirname(__FILE__).'/../app/views/'.$name.'.php';
