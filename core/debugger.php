@@ -126,7 +126,17 @@
             </div>
             <div class="code">
 <?php
-$handle = fopen($file, "r");
+if(file_exists($file)){
+    $handle = fopen($file, "r");
+}else{
+    $handle = false;
+    $file = $GLOBALS['debugger_template'];
+    if(file_exists($file)){
+        $handle = fopen($file,'r');
+    }else{
+        $handle = false;
+    }
+}
 if ($handle) {
     $ln = 0;
     while (($line = fgets($handle)) !== false) {
