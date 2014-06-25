@@ -28,6 +28,7 @@ class AssetsBootstraper{
     }
     
     public function getStylesheet($name){
+        header('Content-type: text/css')
         if(!isset(self::$assets[$name])){
             throw new \Exception('assets colletion not found');
         }
@@ -43,6 +44,7 @@ class AssetsBootstraper{
     }
     
     public function getJavaScript($name){
+        header('Content-type: text/javascript');
         if(!isset(self::$assets[$name])){
             throw new \Exception('assets colletion not found');
         }
