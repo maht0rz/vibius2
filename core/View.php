@@ -7,7 +7,14 @@ class View{
     private $template = true;
     private static $rules = array();
     private static $GlobalVars = array();
-
+    public $secure = false;
+    public function sanitize($bol=true){
+        if(is_bool($bol)){
+            $this->secure = $bol;
+        }
+        return $this;
+    }
+    
     public function load($name){
         $this->file = dirname(__FILE__).'/../app/views/'.$name.'.tpl.php';
         $GLOBALS['debugger_template'] = $this->file;
@@ -145,14 +152,25 @@ class View{
     }
     
  public function getView(){
-       foreach (self::$GlobalVars as $key => $value) {
-           ${$key} = $value;
-        }
-        
-        foreach ($this->args as $key => $value) {
+       if($this->secure === true){
+            foreach (self::$GlobalVars as $key => $value) {
+                 ${$key} = htmlspecialchars($value);
+            }
+            foreach ($this->args as $key => $value) {
             
-            ${$key} = $value;
-        }
+                ${$key} = htmlspecialchars($value);
+            }
+       }else{
+           foreach (self::$GlobalVars as $key => $value) {
+                 ${$key} = $value;
+           }
+           foreach ($this->args as $key => $value) {
+            
+                 ${$key} = $value;
+           }
+       }
+        
+        
         $view = $this->fileContents;
             if($this->template){
                 # echo "is tempalte!";
@@ -170,14 +188,23 @@ class View{
 
     public function display(){
         
-        foreach (self::$GlobalVars as $key => $value) {
-           ${$key} = $value;
-        }
-        
-        foreach ($this->args as $key => $value) {
+        if($this->secure === true){
+            foreach (self::$GlobalVars as $key => $value) {
+                 ${$key} = htmlspecialchars($value);
+            }
+            foreach ($this->args as $key => $value) {
             
-            ${$key} = $value;
-        }
+                ${$key} = htmlspecialchars($value);
+            }
+       }else{
+           foreach (self::$GlobalVars as $key => $value) {
+                 ${$key} = $value;
+           }
+           foreach ($this->args as $key => $value) {
+            
+                 ${$key} = $value;
+           }
+       }
         $view = $this->fileContents;
             if($this->template){
                 # echo "is tempalte!";
