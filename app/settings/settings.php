@@ -1,0 +1,2 @@
+<?php
+use vibius\Container;
