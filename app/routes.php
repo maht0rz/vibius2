@@ -7,7 +7,7 @@
 */
 
 use vibius\router as Route;
-
+use vibius\View;
 
 /**********************************************************/
 
@@ -16,6 +16,5 @@ use vibius\router as Route;
 */
 
 Route::any('/',function(){
-	echo "vibius framework 2.1 dev branch";
+	View::load('welcome')->display();
 });
-
