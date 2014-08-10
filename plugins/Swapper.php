@@ -6,7 +6,7 @@ use vibius\Session;
 use vibius\View;
 use vibius\Container;
 
-Container::add('vibius\Session',new \vibius\core\Session('swapper'));
+//Container::add('vibius\Session',new \vibius\core\Session('swapper'));
 
 
 class Swapper{
@@ -101,7 +101,8 @@ class Swapper{
 		if($this->swapperRequest){
 			if($this->blockName != $this->oldBlockName){
 				header('Content-Type: application/json');
-				$output = array('swapper_newpage' => true, 'swapper_newpage_link' => 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+				$link = explode('?',$_SERVER['REQUEST_URI']);
+				$output = array('swapper_newpage' => true, 'swapper_newpage_link' => 'http://'.$_SERVER['HTTP_HOST'].$link[0]);
 				echo json_encode($output);
 				die();
 			}
