@@ -27,7 +27,7 @@
             "role": "Developer"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "illuminate/database": "v4.2.6",
         "php": ">=5.4.0"
