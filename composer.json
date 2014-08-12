@@ -18,9 +18,6 @@
         }
     },
     "minimum-stability": "stable",
-    "extra": {
-        "stable-master": "2.1-stable"
-    },
     "license": "MIT",
     "authors": [
         {
