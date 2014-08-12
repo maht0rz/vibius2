@@ -17,6 +17,10 @@
             "":"./aliases"
         }
     },
+    "minimum-stability": "stable",
+    "extra": {
+        "stable-master": "1.0-dev"
+    },
     "license": "MIT",
     "authors": [
         {
