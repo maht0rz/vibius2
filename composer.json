@@ -29,7 +29,7 @@
     ],
     "minimum-stability": "stable",
     "extra": {
-        "dev-master": "2.1"
+        "master": "2.1"
     },
     "require": {
         "illuminate/database": "v4.2.6",
