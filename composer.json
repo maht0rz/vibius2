@@ -1,7 +1,7 @@
 {
     "name": "vibius/vibius",
     "type": "library",
-    "version": "2.1-stable",
+    "version": "2.1",
     "description": "Vibius 2.1 PHP Framework",
     "homepage": "https://github.com/maht0rz/vibius2",
     "keywords": ["framwork", "sdk"],
@@ -27,7 +27,6 @@
             "role": "Developer"
         }
     ],
-    "minimum-stability": "stable",
     "require": {
         "illuminate/database": "v4.2.6",
         "php": ">=5.4.0"
