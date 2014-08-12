@@ -1,7 +1,7 @@
 {
     "name": "vibius/vibius",
     "type": "library",
-    "version": "1.0",
+    "version": "2.1",
     "description": "Vibius 2.1 PHP Framework",
     "homepage": "https://github.com/maht0rz/vibius2",
     "keywords": ["framwork", "sdk"],
