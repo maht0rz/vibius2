@@ -4,7 +4,7 @@
     "version": "2.1",
     "description": "Vibius 2.1 PHP Framework",
     "homepage": "https://github.com/maht0rz/vibius2",
-    "keywords": ["framwork", "sdk"],
+    "keywords": ["framework", "sdk"],
      "autoload": {
         "psr-4": {
             "vibius\\core\\":"./core",
