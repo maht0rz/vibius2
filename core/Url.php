@@ -12,6 +12,7 @@ class Url{
     public function redirect($path){
     	$url = $this->to($path);
     	header('Location: '.$url);
+    	exit;
     }
 
 }
